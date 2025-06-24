@@ -240,7 +240,7 @@ elif page =='Analysis Question':
     d91=df[(df['positions']=='ST')&(df['height_cm']>=180)&(df['finishing']>=82)&(df['positioning']>=70)
       &(df['shot_power']>=69)&(df['volleys']>=68)&(df['heading_accuracy']>=72)&(df['ball_control']>=65)
       &(df['strength']>=65)& (df['jumping']>=72)&(df['reactions']>=70)&(df['short_passing']>=62)]
-    d91=d91[['full_name','age','potential','positions','nationality']].sort_values(by='potential',ascending=False).head(10)
+    d91=d91[['full_name','age','potential','positions','nationality']].sort_values(by='age',ascending=False).head(10)
     st.plotly_chart(px.bar(d91,x='full_name',y='age',color='potential',title='Top 10 Players with positions ST with age',text_auto=True))
     st.header("21 - Who are the players earning more than €250K in weekly wages and age is between 22 and 28?")
     d190=df[(df['wage_euro']>250000)& df['age'].isin(range(22,29))][['full_name','age','wage_euro','nationality']].sort_values(by='wage_euro',ascending=False)

@@ -78,7 +78,7 @@ if page=='Introduction':
 
     if search:
         if name == 'Mohab Allam'.lower():
-            st.success(''' 
+            st.write(''' 
                     He was the best instructor at Epsilon AI and the lead trainer of our course.
                     Throughout the program, he was incredibly supportive and always willing to help us whenever we faced challenges.
                     His dedication, professionalism, and friendly attitude made a huge difference in our learning experience.
@@ -155,7 +155,7 @@ elif page =='Analysis Question':
     st.plotly_chart(px.histogram(df,x='heading_accuracy',title='Heading Accuracy Distribution'))
     st.write(''' - **Bivariate Analysis**''')
     st.header("7- What are the names of players who are under 20 years old and valued at more than €10 million?")
-    d180=df[(df['age']<20)&(df['value_euro']>10000000)][['full_name','value_euro','age']]
+    d180=df[(df['age']<20)&(df['value_euro']>10000000)][['full_name','value_euro','age']].sort_values(by='value_euro',ascending=False)
     st.plotly_chart(px.bar(d180,x='full_name',y='value_euro',title='Players who are under 20 years old and have a value of more than 10 million euros',text_auto=True))
     st.header("8 - Who players it's positions is GK , and height>= 185 cm , reactions>=70,agility>=55 , growth_ratio_potential_overall_rating>1 , age_category is promising, sort by release_clause_euro ASC ?")
     d27=df[(df['positions']=='GK')&(df['height_cm']>=185)&(df['reactions']>=70)
@@ -243,7 +243,7 @@ elif page =='Analysis Question':
     d91=d91[['full_name','age','potential','positions','nationality']].sort_values(by='potential',ascending=False).head(10)
     st.plotly_chart(px.bar(d91,x='full_name',y='age',color='potential',title='Top 10 Players with positions ST with age',text_auto=True))
     st.header("21 - Who are the players earning more than €250K in weekly wages and age is between 22 and 28?")
-    d190=df[(df['wage_euro']>250000)& df['age'].isin(range(22,29))][['full_name','age','wage_euro','nationality']]
+    d190=df[(df['wage_euro']>250000)& df['age'].isin(range(22,29))][['full_name','age','wage_euro','nationality']].sort_values(by='wage_euro',ascending=False)
     st.plotly_chart(px.bar(d190,x='full_name',y='wage_euro',color='age',title='Top 9 Players with wages more than 250000 with age',text_auto=True))
     st.header('22 - What is the average crossing and finishing for each preferred_foot in positions LW ')
     d33=df[df['positions']=='LW']
@@ -256,7 +256,7 @@ elif page =='Analysis Question':
     st.header("24 - Players(LB,RB),marking>=80, standing_tackle>=70, sliding_tackle>=70, interceptions>70,crossing>=80, stamina>=75,sprint_speed>=75,acceleration>=70 ?")
     d9=df[(df['positions'].isin(['LB','RB'])) & (df['marking']>=80)&(df['standing_tackle']>=70)&(df['sliding_tackle']>=70)
        &(df['interceptions']>=70)&(df['crossing']>=80)&(df['stamina']>=75)&(df['sprint_speed']>=75)&(df['acceleration']>=70)]
-    d9=d9[['full_name','age','potential','positions']]
+    d9=d9[['full_name','age','potential','positions']].sort_values(by='potential',ascending=False)
     st.plotly_chart(px.bar(d9,x='full_name',y='potential',color='age',title='Top 6 Players with Potential>=85',text_auto=True))
     st.header("25 - What is the correlation between all columns ? ")
     df_corr=(df.drop(['name','full_name','positions','nationality','birth_date','preferred_foot','body_type','position_category','age_category'],axis=1)).corr()
